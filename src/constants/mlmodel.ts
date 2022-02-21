@@ -5,3 +5,4 @@ export const dataset_name = "ImageNet-Sketch"
 export const dataset_link = "https://github.com/HaohanWang/ImageNet-Sketch"
 export const num_images_perclass = 5
 export const dataset_publink = "https://drive.switch.ch/index.php/s/cYJCw5ftRbISodw/download?path=%2F"
+export const app_link_toshare = "https://orisenbazuru.github.io/visionle/"

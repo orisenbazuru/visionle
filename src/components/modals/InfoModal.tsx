@@ -13,10 +13,11 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
   return (
     <BaseModal title="How to play Visionle" isOpen={isOpen} handleClose={handleClose}>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Guess the label predicted by <a href={mlmodel_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{mlmodel_name} vision model </span></strong></a> 
-        for a randomly sampled image from <a href={dataset_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{dataset_name} dataset</span></strong> </a>
-        in 6 tries. After each guess, the color of the tiles will change to show how close your guess was to the label (i.e. word).
+        Guess the label of a randomly chosen image from <a href={dataset_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{dataset_name} dataset</span></strong> </a>
+        in 6 tries.
       </p>
+      <p className="text-sm text-gray-500 dark:text-gray-300">Users can input <strong>any combination of letters equal or shorter than the challenge word</strong>. This default mode is called the Looney Mode 🤪</p>
+      <p className="text-sm text-gray-500 dark:text-gray-300">After each guess, the color of the tiles will change to show how close your guess was to the label (i.e. word).</p>
 
       <div className="flex justify-center mb-1 mt-4">
         <Cell
@@ -34,7 +35,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="H" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter G is in the word and in the correct spot.
+        The letter G is in the word and in the correct spot (i.e. first position).
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
@@ -63,7 +64,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <p className="text-sm text-gray-500 dark:text-gray-300">
         The letter R is not in the word in any spot.
       </p>
-      <div>
+
       <div className="flex justify-center mb-1 mt-4">
         <Cell value="V" status="correct"/>
         <Cell value="I" status="correct"/>
@@ -77,15 +78,12 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <div>
         <ul className="circle text-sm text-gray-500 dark:text-gray-300"> 
 
-          <li>A random image 🎲 from <a href={dataset_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{dataset_name} dataset </span></strong> </a> is chosen.
+          <li>A random image 🎲 from <a href={dataset_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{dataset_name} dataset </span></strong> </a> is chosen
           <img src={sample_imgnetsketch_img} alt={`cat from n02123045 folder in ${dataset_name} dataset`}></img></li>
-          <li>A <a href={mlmodel_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{mlmodel_name} vision model </span></strong></a> 
-          predicts the probability distribution of possible labels for the chosen image.</li>
-          <li>Top-1 predictions from the model or the ground-truth label 😏 is used for the challenge!</li>
+          <li>A label associated with the chosen image is used for the challenge!</li>
+          <li>In Looney Mode 🤪 <strong>any combination of letters equal or shorter than the challenge word</strong> can be used. In Hard Mode 🏋️ <strong>only variation of words from the whole set of labels </strong> are accepted as inputs!</li>
         </ul>
         </div>
-        </div>
-
 
         <p className="mt-6 text-sm text-gray-500 dark:text-gray-300">
         Visionle by{' '}

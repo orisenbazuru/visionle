@@ -119,12 +119,13 @@ export const getWordOfDay = () => {
   const nextday = (index + 1) * msInDay + epochMs
 
   const chosen_foldername = FOLDERNAMES[index % FOLDERNAMES.length]
+  
   // support for getting model's prediction (next release of the app :) )
   // let label_src = gen.create(msInDay.toString()+index.toString()).range(2)
   const label_src = 0 // offering ground-truth for now !
   let image_indx = gen.create(msInDay.toString()+index.toString()).range(num_images_perclass)
   let indx_label = NaN
-  
+
   // console.log('index in list of foldernames:', index)
   // console.log('foldername:', chosen_foldername)
   // console.log('label_src:', label_src)
@@ -158,7 +159,7 @@ export const getWordOfDay = () => {
   // selec_word = 'Porphyrioporphyrio'.toUpperCase()
   const word_length = selec_word.length
 
-  console.log('selected word:', selec_word)
+  // console.log('selected word:', selec_word)
 
   return {solution:selec_word,
           solutionIndex:index,

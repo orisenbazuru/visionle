@@ -3,6 +3,7 @@ import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 import { getStoredIsHighContrastMode } from './localStorage'
 import { MAX_CHALLENGES } from '../constants/settings'
+import { app_link_toshare } from '../constants/mlmodel'
 
 export const shareStatus = (
   guesses: string[],
@@ -13,7 +14,8 @@ export const shareStatus = (
     `${GAME_TITLE} ${solutionIndex} ${
       lost ? 'X' : guesses.length
     }/${MAX_CHALLENGES}${isHardMode ? '*' : ''}\n\n` +
-      generateEmojiGrid(guesses)
+      generateEmojiGrid(guesses) +
+      `\n${app_link_toshare}`
   )
 }
 
