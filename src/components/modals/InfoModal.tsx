@@ -1,6 +1,6 @@
 import { Cell } from '../grid/Cell'
 import { BaseModal } from './BaseModal'
-import {mlmodel_name, mlmodel_link, dataset_name, dataset_link} from '../../constants/mlmodel'
+import {dataset_name, dataset_link} from '../../constants/mlmodel'
 import sample_imgnetsketch_img from '../../n02123045_sketch_1.jpeg'
 
 
@@ -16,7 +16,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         Guess the label of a randomly chosen image from <a href={dataset_link} target="_blank" rel="noreferrer" ><strong><span className="highlight-text">{dataset_name} dataset</span></strong> </a>
         in 6 tries.
       </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300">Users can input <strong>any combination of letters equal or shorter than the challenge word</strong>. This default mode is called the Looney Mode 🤪</p>
+      <p className="text-sm text-gray-500 dark:text-gray-300">Users can input <strong>any combination of letters equal or shorter than the challenge word</strong> (Looney Mode 🤪)</p>
       <p className="text-sm text-gray-500 dark:text-gray-300">After each guess, the color of the tiles will change to show how close your guess was to the label (i.e. word).</p>
 
       <div className="flex justify-center mb-1 mt-4">
