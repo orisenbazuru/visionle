@@ -16,11 +16,11 @@ Each day a random image is selected from the `ImageNet-Sketch` dataset and the g
  - Users can input any combination of letters equal or shorter than 8 letters. This is different from the typical game setup of `Wordle` and we refer to this play mode by `Looney Mode` 🤪
  - The `Hard Mode` 🏋️ restricts the users to input only variation of words from the whole set of labels found in the `ImageNet-Sketch` dataset.
  - Example of `game run` with `tabbycat` challenge is presented below:
-   - Entry screen 💻 ![Visionle entry screen](readme_assets/tabbycat_screen1.png) 
-   - Guessing with trial and error 🤔. Notice that you can use `shorter words` and `non valid words` (i.e. any letter combination) ![Visionle guessing words](readme_assets/tabbycat_screen2.png)
-   - Success 🎉 ![Visionle success](readme_assets/tabbycat_screen3.png)
-   - Stats screen 📊 after the end of trials ![Visionle stats screen](readme_assets/tabbycat_screen4.png)
-   - Sharing results by clicking on `Share` ![Visionle share results](readme_assets/tabbycat_screen5.png)
+   - Entry screen 💻 <br/> ![Visionle entry screen](readme_assets/tabbycat_screen1.png) 
+   - Guessing with trial and error 🤔. Notice that you can use `shorter words` and `non valid words` (i.e. any letter combination) <br/> ![Visionle guessing words](readme_assets/tabbycat_screen2.png)
+   - Success 🎉 <br/> ![Visionle success](readme_assets/tabbycat_screen3.png)
+   - Stats screen 📊 after the end of trials <br/> ![Visionle stats screen](readme_assets/tabbycat_screen4.png)
+   - Sharing results by clicking on `Share` <br/> ![Visionle share results](readme_assets/tabbycat_screen5.png)
 
 ### Extension to support ML model prediction
 The current version of `Visionle` can be easily extended/modified to use the prediction of a trained `Machine learning model` such as `EfficentNet` or `Vit` on the `ImageNet` dataset. In fact, the code/logic of this setup is already implemented - what is needed is `some slight modification` of `word.ts` file and dumping the predictions of the model in a `json` file. I will leave this as an exercise for the reader 😅 (until I get the time to push that in version `0.2`).
