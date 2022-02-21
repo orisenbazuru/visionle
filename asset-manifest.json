@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/visionle/static/css/main.b345a2be.css",
+    "main.js": "/visionle/static/js/main.ad417560.js",
+    "static/js/787.b3f9d252.chunk.js": "/visionle/static/js/787.b3f9d252.chunk.js",
+    "static/media/n02123045_sketch_1.jpeg": "/visionle/static/media/n02123045_sketch_1.fd6d88900d02ed438fa3.jpeg",
+    "index.html": "/visionle/index.html",
+    "main.b345a2be.css.map": "/visionle/static/css/main.b345a2be.css.map",
+    "main.ad417560.js.map": "/visionle/static/js/main.ad417560.js.map",
+    "787.b3f9d252.chunk.js.map": "/visionle/static/js/787.b3f9d252.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b345a2be.css",
+    "static/js/main.ad417560.js"
+  ]
+}
