@@ -33,6 +33,11 @@ export const getGuessStatuses = (guess: string): CharStatus[] => {
   const splitSolution = solution.split('')
   const splitGuess = guess.split('')
 
+  // console.log('solution:', solution)
+  // console.log('splitSolution:', splitSolution)
+  // console.log('guess:', guess)
+  // console.log('splitGuess:', splitGuess)
+
   const solutionCharsTaken = splitSolution.map((_) => false)
 
   const statuses: CharStatus[] = Array.from(Array(guess.length))

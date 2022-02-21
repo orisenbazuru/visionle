@@ -3,6 +3,7 @@ import {
   ChartBarIcon,
   CogIcon,
 } from '@heroicons/react/outline'
+import sha256 from 'crypto-js/sha256'
 import { useState, useEffect } from 'react'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
@@ -13,13 +14,12 @@ import {
   GAME_TITLE,
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
-  NOT_ENOUGH_LETTERS_MESSAGE,
+  ZERO_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
   HARD_MODE_ALERT_MESSAGE,
 } from './constants/strings'
 import {
-  MAX_WORD_LENGTH,
   MAX_CHALLENGES,
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
@@ -29,7 +29,7 @@ import {
   isWordInWordList,
   isWinningWord,
   solution,
-  findFirstUnusedReveal,
+  word_length,
 } from './lib/words'
 import { addStatsForCompletedGame, loadStats } from './lib/stats'
 import {
@@ -42,6 +42,15 @@ import {
 import './App.css'
 import { AlertContainer } from './components/alerts/AlertContainer'
 import { useAlert } from './context/AlertContext'
+
+const MAX_WORD_LENGTH = word_length // override MAX_WORD_LENGTH
+// console.log('MAX_WORD_LENGTH:', MAX_WORD_LENGTH)
+// fetch("./jsonobj/truelabel_map.json")
+//     .then(response => response.json())
+//     .then(json => {
+//         console.log(json);
+//         // Do stuff with the contents of the JSON file here
+//     });
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -70,10 +79,17 @@ function App() {
   const [isRevealing, setIsRevealing] = useState(false)
   const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
-    if (loaded?.solution !== solution) {
+    // console.log('loaded t1:\n', loaded)
+    if (loaded?.solutionHash !== sha256(solution).toString()) {
+      // console.log('loaded?.solution', loaded?.solutionHash)
+      // console.log('loaded?.solution !== solution', loaded?.solutionHash !== sha256(solution).toString())
       return []
     }
-    const gameWasWon = loaded.guesses.includes(solution)
+    // console.log('loaded t2:\n', loaded)
+    const gameWasWon = loaded?.guesses.includes(solution)
+    // console.log('loaded.guesses :\n', loaded.guesses)
+    // console.log('gameWasWon:', gameWasWon)
+
     if (gameWasWon) {
       setIsGameWon(true)
     }
@@ -83,6 +99,7 @@ function App() {
         persist: true,
       })
     }
+    // console.log('loaded t3:\n', loaded)
     return loaded.guesses
   })
 
@@ -136,7 +153,8 @@ function App() {
   }
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution })
+    const solutionHash: string = sha256(solution).toString()
+    saveGameStateToLocalStorage({ guesses, solutionHash })
   }, [guesses])
 
   useEffect(() => {
@@ -176,33 +194,44 @@ function App() {
     if (isGameWon || isGameLost) {
       return
     }
-    if (!(currentGuess.length === MAX_WORD_LENGTH)) {
-      showErrorAlert(NOT_ENOUGH_LETTERS_MESSAGE)
+
+    // if (!(currentGuess.length === MAX_WORD_LENGTH)) {
+    //   showErrorAlert(NOT_ENOUGH_LETTERS_MESSAGE)
+    //   setCurrentRowClass('jiggle')
+    //   return setTimeout(() => {
+    //     setCurrentRowClass('')
+    //   }, ALERT_TIME_MS)
+    // }
+
+    // at least one letter is needed for a guess!
+    if (currentGuess.length === 0) {
+      showErrorAlert(ZERO_LETTERS_MESSAGE)
       setCurrentRowClass('jiggle')
       return setTimeout(() => {
         setCurrentRowClass('')
       }, ALERT_TIME_MS)
     }
 
-    if (!isWordInWordList(currentGuess)) {
-      showErrorAlert(WORD_NOT_FOUND_MESSAGE)
-      setCurrentRowClass('jiggle')
-      return setTimeout(() => {
-        setCurrentRowClass('')
-      }, ALERT_TIME_MS)
-    }
-
-    // enforce hard mode - all guesses must contain all previously revealed letters
     if (isHardMode) {
-      const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
-      if (firstMissingReveal) {
-        showErrorAlert(firstMissingReveal)
+      if (!isWordInWordList(currentGuess)) {
+        showErrorAlert(WORD_NOT_FOUND_MESSAGE)
         setCurrentRowClass('jiggle')
         return setTimeout(() => {
           setCurrentRowClass('')
         }, ALERT_TIME_MS)
       }
     }
+    // // enforce hard mode - all guesses must contain all previously revealed letters
+    // if (isHardMode) {
+    //   const firstMissingReveal = findFirstUnusedReveal(currentGuess, guesses)
+    //   if (firstMissingReveal) {
+    //     showErrorAlert(firstMissingReveal)
+    //     setCurrentRowClass('jiggle')
+    //     return setTimeout(() => {
+    //       setCurrentRowClass('')
+    //     }, ALERT_TIME_MS)
+    //   }
+    // }
 
     setIsRevealing(true)
     // turn this back off after all
@@ -214,7 +243,7 @@ function App() {
     const winningWord = isWinningWord(currentGuess)
 
     if (
-      currentGuess.length === MAX_WORD_LENGTH &&
+      currentGuess.length <= MAX_WORD_LENGTH &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
@@ -282,6 +311,7 @@ function App() {
         isGameWon={isGameWon}
         handleShare={() => showSuccessAlert(GAME_COPIED_MESSAGE)}
         isHardMode={isHardMode}
+        label={solution}
       />
       <SettingsModal
         isOpen={isSettingsModalOpen}

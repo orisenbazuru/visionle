@@ -1,5 +1,7 @@
-import { MAX_WORD_LENGTH } from '../../constants/settings'
+// import { MAX_WORD_LENGTH } from '../../constants/settings'
 import { Cell } from './Cell'
+import {word_length} from '../../lib/words'
+const MAX_WORD_LENGTH = word_length
 
 type Props = {
   guess: string

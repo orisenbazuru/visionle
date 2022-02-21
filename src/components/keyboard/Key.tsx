@@ -1,8 +1,13 @@
 import { ReactNode } from 'react'
 import classnames from 'classnames'
 import { CharStatus } from '../../lib/statuses'
-import { MAX_WORD_LENGTH, REVEAL_TIME_MS } from '../../constants/settings'
+// import { MAX_WORD_LENGTH, REVEAL_TIME_MS } from '../../constants/settings'
+import { REVEAL_TIME_MS } from '../../constants/settings'
+
 import { getStoredIsHighContrastMode } from '../../lib/localStorage'
+import {word_length} from '../../lib/words'
+const MAX_WORD_LENGTH = word_length
+
 
 type Props = {
   children?: ReactNode

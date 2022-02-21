@@ -3,7 +3,8 @@ const highContrastKey = 'highContrast'
 
 type StoredGameState = {
   guesses: string[]
-  solution: string
+  // solution: string
+  solutionHash: string
 }
 
 export const saveGameStateToLocalStorage = (gameState: StoredGameState) => {
@@ -47,3 +48,6 @@ export const getStoredIsHighContrastMode = () => {
   const highContrast = localStorage.getItem(highContrastKey)
   return highContrast === '1'
 }
+
+const cheatMessage = 'Sneaky rascle 🤡 -- trying to sneak peek to the answer 😉'
+localStorage.setItem('gameMessage', cheatMessage)

@@ -12,6 +12,11 @@ import {
   SHARE_TEXT,
 } from '../../constants/strings'
 
+import {dataset_name, dataset_publink} from '../../constants/mlmodel'
+
+import {chosen_foldername, image_indx} from '../../lib/words'
+
+
 type Props = {
   isOpen: boolean
   handleClose: () => void
@@ -21,8 +26,8 @@ type Props = {
   isGameWon: boolean
   handleShare: () => void
   isHardMode: boolean
+  label:string
 }
-
 export const StatsModal = ({
   isOpen,
   handleClose,
@@ -32,6 +37,7 @@ export const StatsModal = ({
   isGameWon,
   handleShare,
   isHardMode,
+  label,
 }: Props) => {
   if (gameStats.totalGames <= 0) {
     return (
@@ -44,6 +50,7 @@ export const StatsModal = ({
       </BaseModal>
     )
   }
+
   return (
     <BaseModal
       title={STATISTICS_TITLE}
@@ -56,7 +63,16 @@ export const StatsModal = ({
       </h4>
       <Histogram gameStats={gameStats} />
       {(isGameLost || isGameWon) && (
-        <div className="mt-5 sm:mt-6 columns-2 dark:text-white">
+        <div className="mt-5 sm:mt-6 columns-1 dark:text-white">
+          <div>
+
+            {/* <p><strong>Chosen image:</strong><img src={sample_imgnetsketch_img}></img></p> */}
+            <p><strong>Chosen image:</strong><img alt={`sketch_${image_indx}.JPEG from ${chosen_foldername} folder in ${dataset_name} dataset`} src={`${dataset_publink}${chosen_foldername}&files=sketch_${image_indx}.JPEG`}></img></p>
+            
+            <br/>
+            <p><strong>Label: {label}</strong></p>
+            <br/>
+          </div>
           <div>
             <h5>{NEW_WORD_TEXT}</h5>
             <Countdown

@@ -36,6 +36,16 @@
   animation-fill-mode: backwards;
 }
 
+ul.circle {
+  list-style-type: circle;
+}
+li {
+  text-align: justify;
+}
+
+.highlight-text {
+  /* background-color:azure; */
+}
 .cell-reveal.absent {
   animation-name: revealAbsentCharCell;
 }
