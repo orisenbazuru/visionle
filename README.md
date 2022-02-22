@@ -1,7 +1,7 @@
 
 ![Visionle logo](readme_assets/visionle_img.png)
 
-This is a clone project of the popular word guessing `Wordle`. 
+This is a clone project of the popular word guessing game `Wordle`. 
 
 [**👾 Play the demo here 🕹️**](https://orisenbazuru.github.io/visionle/)
 
@@ -23,7 +23,7 @@ Each day a random image is selected from the `ImageNet-Sketch` dataset and the g
    - Sharing results by clicking on `Share` <br/> ![Visionle share results](readme_assets/tabbycat_screen5.png)
 
 ### Extension to support ML model prediction
-The current version of `Visionle` can be easily extended/modified to use the prediction of a trained `Machine learning model` such as `EfficentNet` or `Vit` on the `ImageNet` dataset. In fact, the code/logic of this setup is already implemented - what is needed is `some slight modification` of `word.ts` file and dumping the predictions of the model in a `json` file. I will leave this as an exercise for the reader 😅 (until I get the time to push that in version `0.2`).
+The current version of `Visionle` can be easily extended/modified to use the prediction of a trained `Machine learning model` such as `EfficientNet` or `ViT` on the `ImageNet` dataset. In fact, the code/logic of this setup is already implemented - what is needed is `some slight modification` of `word.ts` file and dumping the predictions of the model in a `json` file. I will leave this as an exercise for the reader 😅 (until I get the time to push that in version `0.2`).
 
 ### Credits
 
